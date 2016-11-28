@@ -86,11 +86,11 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\glfw-3.2.1.bin.WIN64\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\glfw-3.2.1.bin.WIN64\include;..\glew-2.0.0\include\;..\glm</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>opengl32.lib;glew32.lib;glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>D:\github-repository\glewtest\glew-2.0.0\lib\Release\x64;D:\github-repository\pixelpainting\glfw-3.2.1.bin.WIN64\lib-vc2015;</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\glew-2.0.0\lib\Release\x64;..\glfw-3.2.1.bin.WIN64\lib-vc2015</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

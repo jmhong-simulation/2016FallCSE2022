@@ -19,6 +19,8 @@ GLFWwindow* window;
 // Include GLM
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/transform.hpp>
+#include <vector>
 
 using namespace glm;
 
@@ -62,7 +64,7 @@ int main(void)
 	// Ensure we can capture the escape key being pressed below
 	glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
 
-	// Dark blue background
+	// white background color
 	glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 
 	GLuint VertexArrayID;
@@ -72,29 +74,51 @@ int main(void)
 	// Create and compile our GLSL program from the shaders
 	GLuint programID = LoadShaders("SimpleVertexShader.vertexshader", "SimpleFragmentShader.fragmentshader");
 
-	const GLfloat triangle_vertices[] = {
-		0.0f, 0.0f, 0.0f,
-		1.0f, 0.0f, 0.0f,
-		0.5f,  1.0f, 0.0f,
-	};
+	//const GLfloat triangle_vertices[] = {
+	//	0.0f, 0.0f, 0.0f,
+	//	1.0f, 0.0f, 0.0f,
+	//	0.5f,  1.0f, 0.0f,
+	//};
+	/*std::vector<GLfloat> triangle_vertices;
+	triangle_vertices.push_back(0.0f);
+	triangle_vertices.push_back(0.0f);
+	triangle_vertices.push_back(0.0f);
+	triangle_vertices.push_back(1.0f);
+	...*/
+
+	std::vector<glm::vec3> triangle_vertices;
+	triangle_vertices.push_back(glm::vec3(0.0f, 0.0f, 0.0f));
+	triangle_vertices.push_back(glm::vec3(1.0f, 0.0f, 0.0f));
+	triangle_vertices.push_back(glm::vec3(0.5f, 1.0f, 0.0f));
+
+	glm::vec3 tri_center(0.0f);
+	for (int i = 0; i < triangle_vertices.size(); i++)
+	{
+		tri_center += triangle_vertices[i];
+	}
+	tri_center /= triangle_vertices.size();
 
 	const GLfloat square_vertices[] = {
 		0.0f, 0.0f, 0.0f,
 		1.0f, 0.0f, 0.0f,
-		1.0f, 1.0f, 0.0f,
+		1.0f, 1.2f, 0.0f,
 		0.0f, 1.0f, 0.0f,
 	};
 
+	glm::vec3 dir(0.0f, 1.0f, 0.0f);
 
 	GLuint vertexbuffer;
 	glGenBuffers(1, &vertexbuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(triangle_vertices), triangle_vertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, triangle_vertices.size() * sizeof(glm::vec3),
+		&(triangle_vertices[0].x), GL_STATIC_DRAW);
 
 	GLuint vertexbuffer2;
 	glGenBuffers(1, &vertexbuffer2);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer2);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(square_vertices), square_vertices, GL_STATIC_DRAW);
+
+	glm::mat4 Model = glm::mat4(1.0f);
 
 	do {
 
@@ -105,8 +129,8 @@ int main(void)
 		glUseProgram(programID);
 
 		GLuint MatrixID = glGetUniformLocation(programID, "MVP");
-		//glm::mat4 Projection = glm::perspective(glm::radians(45.0f), 4.0f / 3.0f, 0.1f, 100.0f);
-		glm::mat4 Projection = glm::ortho(-1.0f,1.0f,-1.0f,1.0f,0.0f,100.0f); // In world coordinates
+		glm::mat4 Projection = glm::perspective(glm::radians(45.0f), 4.0f / 3.0f, 0.1f, 100.0f);
+		//glm::mat4 Projection = glm::ortho(-1.0f,1.0f,-1.0f,1.0f,0.0f,100.0f); // In world coordinates
 
 		// Camera matrix
 		glm::mat4 View = glm::lookAt(
@@ -115,7 +139,45 @@ int main(void)
 			glm::vec3(0, 1, 0)  // Head is up (set to 0,-1,0 to look upside-down)
 		);
 
-		glm::mat4 Model = glm::mat4(1.0f);
+		//Model = glm::translate(Model, glm::vec3(0.0, 0.1f, 0.0f));
+		if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
+		{
+			// rotation about the origin
+		//	Model = glm::rotate(Model, glm::radians(1.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+
+			const float turn_coeff_ = 1.0f;
+
+			// rotation about the center of the triangle
+			Model = glm::translate(+tri_center) * glm::rotate(glm::mat4(), glm::radians(turn_coeff_), glm::vec3(0.0f, 0.0f, 1.0f)) * glm::translate(-tri_center) * Model;
+
+			// rotate dir vector
+			const glm::mat4 rot_mat = glm::rotate(glm::mat4(), glm::radians(turn_coeff_), glm::vec3(0, 0, 1));
+
+			glm::vec4 temp(dir.x, dir.y, dir.z, 0.0f);
+
+			temp = rot_mat * temp;
+
+			dir.x = temp.x;
+			dir.y = temp.y;
+		}
+
+		if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
+		{
+			// rotate model matrix 
+
+			// rotate dir vector
+		}
+
+		if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
+		{
+			// translate 
+		}
+
+		if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
+		{
+			// move backward
+		}
+
 		glm::mat4 MVP = Projection * View * Model;
 
 		glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
@@ -125,7 +187,7 @@ int main(void)
 		glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
 		glVertexAttribPointer(
 			0,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
-			3,                  // size
+			3,                  // size (x, y, z)
 			GL_FLOAT,           // type
 			GL_FALSE,           // normalized?
 			0,                  // stride
@@ -133,7 +195,7 @@ int main(void)
 		);
 
 		// Draw the triangle !
-		glDrawArrays(GL_LINE_LOOP, 0, 3); // 6 vertices
+		glDrawArrays(GL_LINE_LOOP, 0, 3); // 3 vertices
 
 
 		glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer2);
@@ -146,7 +208,8 @@ int main(void)
 			(void*)0            // array buffer offset
 		);
 
-		glDrawArrays(GL_LINE_LOOP, 0, 4); // 6 vertices
+		glDrawArrays(GL_LINE_LOOP, 0, 4); // 4 vertices
+		//glDrawArrays(GL_LINES, 0, 4);
 
 		glDisableVertexAttribArray(0);
 

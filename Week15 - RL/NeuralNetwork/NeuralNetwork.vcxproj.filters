@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{bfbffac9-a32d-4639-a7a7-a14e678a8cdf}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\CircularQueue.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ConnectionBase.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ConnectionFactory.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ConsoleGame.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ConvChannel2D.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ConvConnection2D.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ConventionalMacros.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ConvFilter2D.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ConvImage2D.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Convolution2D.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FullConnection.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameState.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\LayerBase.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MatrixMN.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\NeuralNetwork.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ReinforcementLearning.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SubSampleConn2D.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Vector2D.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\VectorND.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\WeightedSumConn2D.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ActivationFunctions.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Array1D.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BreakoutGame.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ConvFilter1D.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\ConsoleGame.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\conv_gaming.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\conv_test_main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ConvConnection2D.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ConventionalMacros.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Convolution2D.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FullConnection.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameState.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LayerBase.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MatrixMN.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\NeuralNetwork.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ReinforcementLearning.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ActivationFunctions.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

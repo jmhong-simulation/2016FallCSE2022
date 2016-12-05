@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MatrixMN.cpp" />
+    <ClCompile Include="NeuralNetwork.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="NeuralNetwork.h" />
+    <ClInclude Include="Array1D.h" />
+    <ClInclude Include="MatrixMN.h" />
+    <ClInclude Include="VectorND.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
+  </ItemGroup>
+</Project>
